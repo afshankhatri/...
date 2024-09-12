@@ -6,12 +6,12 @@ const bcrypt = require('bcrypt')
 
 
 const UserSchema = new mongoose.Schema({
-    name:{
+    name:{ // 1st name ,last name ,middle name 
         type:String,
         required:true,
         index:true
     },
-    userName:{
+    userName:{ //changed from userName
         type:String,
         required:true,
         unique:true,
@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:true,    
     },
-    email:{
+    email:{// normal + college domain 
         type:String,
         required:true,
         unique:true,
@@ -48,6 +48,7 @@ const UserSchema = new mongoose.Schema({
         required:true,
         index:true
     },
+    
     DispPic:{
         type:String,
         required:true
@@ -55,22 +56,29 @@ const UserSchema = new mongoose.Schema({
     refreshToken:{
         type: String
     }
+    //cgpa
+    //lor
+    //resume
+    // marksheet 10th 12th
+    //gate score 
+    //description
+    //extra curricullars(committee)
+    // Department
+    
 },{timestamps:true})
 
 
 
-const User = /*new*/ mongoose.model("User",UserSchema)
-module.exports = User
-// module.exports = mongoose.model("User",UserSchema)
+
 
 
 
 UserSchema.plugin(aggregatePaginate);
 
-UserSchema.pre('pre',async function (next) {
+UserSchema.pre('save',async function (next) {
     if (!this.isModified('password')) return next();
 
-    this.password = bcrypt.hash(this.password,10)
+    this.password = await bcrypt.hash(this.password,10)
     next()
 })
 
@@ -113,3 +121,9 @@ UserSchema.methods.generateRefreshToken = function(){
     }
 )
 }
+
+
+
+const User = /*new*/ mongoose.model("User",UserSchema)
+module.exports = User
+// module.exports = mongoose.model("User",UserSchema)

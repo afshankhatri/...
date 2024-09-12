@@ -1,6 +1,8 @@
 const express = require('express')
+// const router = express.Router()
 const cors = require('cors')
 const cookieParser =require('cookie-parser')
+const path = require('path');
 
 const app = express()
 
@@ -17,5 +19,10 @@ app.use(express.json({limit:'16kb'}))
 app.use(express.urlencoded({extended:true,limit:'16kb'}))
 app.use(express.static(static_path))
 app.use(cookieParser())
+
+
+// taking controllers and routes
+// const userRouter = require('../src/routes/user.routes')
+// app.use('/user',userRouter)
 
 module.exports = app

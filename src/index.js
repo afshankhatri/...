@@ -11,6 +11,7 @@ const port = process.env.PORT
 const frontend_path = path.join(__dirname,'../public/frontendCode') //to take hbs file
 const static_path = path.join(__dirname,'../public/views') //to store photos
 
+app.use(express.static('public'));
 app.use(express.static(static_path))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
@@ -21,6 +22,27 @@ app.set("views", frontend_path);
 app.get("/home",(req,res)=>{
     res.render('index')
 })
+
+app.get("/signup",(req,res)=>{
+    res.render('studentsPersonalInfo')
+})
+app.get("/signup/qualification",(req,res)=>{
+    res.render('EduInfo')
+})
+app.get('/dashboard',(req,res)=>{
+    res.render('dashBoard')
+})
+
+
+
+//taking controllers and routes
+const router = require('../src/routes/user.routes')
+app.use('/user',router)
+
+const routeradmin = require("../src/routes/admin.routes")
+app.use("/admin",routeradmin)
+
+
 
 connectDB()
 .then(()=>{
