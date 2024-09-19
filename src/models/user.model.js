@@ -27,6 +27,11 @@ const UserSchema = new mongoose.Schema({
         unique:true,
         index:true
     },
+    collegedomain:{
+        type:String,
+        required:false
+ 
+    },
     contactNum:{
         type:Number,
         unique:true,
@@ -53,17 +58,63 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    cgpa:{
+        type:Number,
+        required:true,
+    },
+    lor:{
+        type:String,
+        // required:false
+ 
+    },
+    resume:{
+        type:String,
+        // required:false
+ 
+    },
+    class10:{
+        type:String,
+        // required:false
+ 
+    },
+    class12:{
+        type:String,
+        // required:false
+ 
+    },
+    gateScore:{
+        type:String,
+        // required:false
+ 
+    }, 
+    description:{
+        type:String,
+        // required:false
+ 
+    },
+    extraCurriculars:{
+        type:String,
+        // required:false
+    },
+    Department:{
+        type:String,
+        // required:true
+    },
+    certifications:{
+        type:String,
+        // required:true
+    },
+    internship:{
+        type:String,
+        // required:true
+    },
+    researchPaper:{
+        type:String,
+        // required:true
+    },
     refreshToken:{
         type: String
     }
-    //cgpa
-    //lor
-    //resume
-    // marksheet 10th 12th
-    //gate score 
-    //description
-    //extra curricullars(committee)
-    // Department
     
 },{timestamps:true})
 
@@ -96,9 +147,9 @@ UserSchema.methods.generateAccessToken = function(){
     // payload
     { //enter things which you want for Authentication and authorization...like password and username
         _id:this._id,//this is available byDefault in our DB
-        name:this.name,
-        password: this.password,
-        userName: this.userName
+        // email:this.email,
+        // password: this.password,
+        // userName: this.userName
     },//accessToken
     process.env.ACCESS_TOKEN_SECRET,
     {//expiresIn
@@ -111,7 +162,10 @@ UserSchema.methods.generateRefreshToken = function(){
     return jwt.sign(//(payloads,RefreshToken, expiresIn)
     { 
         _id:this._id,
-        name:this.name
+        // name:this.name,
+        userName: this.userName,
+        // password: this.password
+        
         //it has less info since it is just used to refresh the account
 
     },

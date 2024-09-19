@@ -26,6 +26,11 @@ const AdminSchema = new mongoose.Schema({
         unique:true,
         index:true
     },
+    collegedomain:{
+        type:String,
+        required:false
+ 
+    },
     contactNum:{
         type:Number,
         unique:true,
@@ -41,6 +46,11 @@ const AdminSchema = new mongoose.Schema({
     qualification:{
         type:String,
         required:true
+    },
+    achievements:{
+        type:String,
+        required:false
+ 
     },
     DispPic:{
         type:String,
@@ -94,3 +104,4 @@ AdminSchema.methods.generateRefreshToken = function(){
 
 const Admin = mongoose.model("Admin",AdminSchema)
 module.exports = Admin
+

@@ -17,8 +17,8 @@ const generateAccessAndRefreshToken = async(userID)=>{
 
         userToken.refreshToken = refreshToken
         await userToken.save({validateBeforeSave:false})
-        console.log("check:",accessToken);
-        console.log("hey: ",refreshToken);
+        console.log("checkACCESS:",accessToken);
+        console.log("heyREFRESH: ",refreshToken);
 
         return {accessToken,refreshToken}
     } catch (error) {
@@ -31,11 +31,35 @@ const generateAccessAndRefreshToken = async(userID)=>{
 
 const registerUser = asyncHandler(async (req,res)=>{
     //destructuring so that we dont have to write name.req.body and similarly for others ...just write name and it's done
-    const{contactNum,email,password,userName,name,DOB,ProgStartYear,GraduationYear,linkedin,DispPic} = req.body
+    const{contactNum,email,password,userName,name,DOB,ProgStartYear,GraduationYear,linkedin,DispPic,description,
+        extraCurriculars,
+        researchPaper,
+        internship,
+        gatescore,
+        certifications,
+        Department,
+        class12,
+        class10,
+        resume,
+        collegedomain,
+        cgpa,
+        lor} = req.body
 
 
     if (
-        [contactNum,email,password,userName,name,DOB,ProgStartYear,GraduationYear,linkedin,DispPic]
+        [contactNum,email,password,userName,name,DOB,ProgStartYear,GraduationYear,linkedin,DispPic,description,
+            extraCurriculars,
+            researchPaper,
+            internship,
+            gatescore,
+            certifications,
+            Department,
+            class12,
+            class10,
+            resume,
+            collegedomain,
+            cgpa,
+            lor]
         .some((field)=>field?.trim() === '')) {
         throw new apiError('all the fields needs to be filled',400)
     }
@@ -48,12 +72,70 @@ const registerUser = asyncHandler(async (req,res)=>{
         throw new apiError('user exist ,please login with same credentials',400)
     }
 
+    // const researchPaperLocalPath = req.files?.researchPaper[0]?.path
+    // const lorLocalPath = req.files?.lor[0]?.path
+    // const internshipLocalPath = req.files?.internship[0]?.path
+    // const class10LocalPath = req.files?.class10[0]?.path
+    // const class12LocalPath = req.files?.class12[0]?.path
+    // const gateScoreLocalPath = req.files?.gatescore[0]?.path
+    // const resumeLocalPath = req.files?.resume[0]?.path
+    // const certificationsLocalPath = req.files?.certifications[0]?.path
 
-    const profilePicLocalPath = req.files?.DispPic[0]?.path
-    if (!profilePicLocalPath) {
+    
+    const researchPaperLocalPath = req.files?.researchPaper?.[0]?.path;
+    if (!researchPaperLocalPath) {
+        throw new apiError('Research paper is required', 400);
+    }
+    const research = await uploadOnCloudinary(researchPaperLocalPath);
+    
+    const lorLocalPath = req.files?.lor?.[0]?.path;
+    if (!lorLocalPath) {
+        throw new apiError('Letter of Recommendation (LOR) is required', 400);
+    }
+    const LOR = await uploadOnCloudinary(lorLocalPath);
+    
+    const internshipLocalPath = req.files?.internship?.[0]?.path;
+    if (!internshipLocalPath) {
+        throw new apiError('Internship document is required', 400);
+    }
+    const internships = await uploadOnCloudinary(internshipLocalPath);
+    
+    const class10LocalPath = req.files?.class10?.[0]?.path;
+    if (!class10LocalPath) {
+        throw new apiError('Class 10 certificate is required', 400);
+    }
+    const clas10 = await uploadOnCloudinary(class10LocalPath);
+    
+    const class12LocalPath = req.files?.class12?.[0]?.path;
+    if (!class12LocalPath) {
+        throw new apiError('Class 12 certificate is required', 400);
+    }
+    const clas12 = await uploadOnCloudinary(class12LocalPath);
+    
+    const gateScoreLocalPath = req.files?.gateScore?.[0]?.path;
+    if (!gateScoreLocalPath) {
+        throw new apiError('GATE score document is required', 400);
+    }
+    const gateScore = await uploadOnCloudinary(gateScoreLocalPath);
+    
+    const resumeLocalPath = req.files?.resume?.[0]?.path;
+    if (!resumeLocalPath) {
+        throw new apiError('Resume is required', 400);
+    }
+    const resum = await uploadOnCloudinary(resumeLocalPath);
+    
+    const certificationsLocalPath = req.files?.certifications?.[0]?.path;
+    if (!certificationsLocalPath) {
+        throw new apiError('Certifications are required', 400);
+    }
+    const certification = await uploadOnCloudinary(certificationsLocalPath);
+    
+        const profilePicLocalPath = req.files?.DispPic[0]?.path
+     if (!profilePicLocalPath) {
         throw new apiError('profile pic is required',400)
     }
     const profilePic = await uploadOnCloudinary(profilePicLocalPath)
+
 
     // if (!DispPic) {
     //     throw new apiError('profile pic is required')
@@ -69,7 +151,21 @@ const registerUser = asyncHandler(async (req,res)=>{
         name,
         DOB,
         ProgStartYear,
-        GraduationYear
+        GraduationYear,
+        description,
+        extraCurriculars,
+        researchPaper:research.url,
+        internship:internships.url,
+        gatescore:gateScore.url,
+        certifications:certification.url,
+        Department,
+        class12:clas12.url,
+        class10:clas10.url,
+        resume:resum.url,
+        collegedomain,
+        cgpa,
+        lor:LOR.url,
+        name
     })
 
     const userCreated =  await User.findById(user._id).select(' -password -refreshToken')
@@ -77,9 +173,11 @@ const registerUser = asyncHandler(async (req,res)=>{
         throw new apiError("something went wrong while registering user ",500)
     }
 
-    return res.status(201).json(
+    return res
+    .status(201).json(
         new apiResponse(200,userCreated,'user registered successfully')
     )
+    .render('index')//yaha pe 
 })
 
 const loginUser = asyncHandler(async(req,res)=>{
@@ -107,7 +205,8 @@ const loginUser = asyncHandler(async(req,res)=>{
     const loginUser = await User.findById(user._id).select('-password -refreshToken')
     const options = {//this will allow only server to mdodify the cookies
         httpOnly:true,
-        secure:true
+        secure:false,
+        sameSite:'Lax'
     }
 
 
@@ -143,8 +242,8 @@ const logoutUser = asyncHandler(async(req,res)=>{
     )
     const options = {
         httpOnly:true,
-        secure:true,
-        sameSite:'None'
+        secure:true, //wehen using in production change this to true 
+        sameSite:'none'
     }
 
     return res

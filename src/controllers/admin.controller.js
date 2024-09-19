@@ -4,6 +4,7 @@ const apiResponse = require("../utils/apiResponse")
 const asyncHandler = require("../utils/asyncHandler")
 const uploadOnCloudinary = require("../utils/cloudinary")
 
+
 const path = require('path')
 const upload = require("../middlewares/multer.middleware")
 
@@ -29,9 +30,9 @@ const generateAccessAndRefreshToken = async(userID)=>{
 
 
 const registerAdmin = asyncHandler(async(req,res)=>{
-    const {DispPic,qualification,department,DOB,contactNum,email,password,userName,name} = req.body
+    const {DispPic,achievements,qualification,department,DOB,contactNum,collegedomain,email,password,userName,name} = req.body
 
-    if ([DispPic,qualification,department,DOB,contactNum,email,password,userName,name]
+    if ([DispPic,qualification,department,DOB,contactNum,email,password,userName,name,achievements,collegedomain]
         .some((field)=>field?.trim() === '' )) {
         throw new apiError('all the fields require for admin registratioin',400)
     }
@@ -59,8 +60,11 @@ const registerAdmin = asyncHandler(async(req,res)=>{
         email,
         password,
         userName,
-        name
+        name,
+        achievements,
+        collegedomain
     })
+
 
     const adminCreated = await Admin.findById(admin._id).select('-password -refreshToken')
     if (!adminCreated) {
@@ -69,6 +73,7 @@ const registerAdmin = asyncHandler(async(req,res)=>{
     return res.status(201).json(
         new apiResponse(200,adminCreated,"admin profile created successfully")
     )
+    
 }) 
 
 const loginAdmin = asyncHandler(async(req,res)=>{
@@ -104,16 +109,44 @@ const loginAdmin = asyncHandler(async(req,res)=>{
         new apiResponse(
             200,
             {
-                user:loginAdmin,accessToken,refreshToken
+                admin:loginAdmin,accessToken,refreshToken
             },
-            "user logged in successfully"
+            "admin logged in successfully"
         )
     )
 })
 
-// const logoutAdmin
+const logoutAdmin = asyncHandler(async(req,res)=>{
+    await Admin.findByIdAndUpdate(
+        req.admin._id,
+        {
+            $set:{
+                refreshToken:undefined
+            }
+        },
+        {
+            new:true
+        }
+    )
+    const options = {
+        httpOnly:true,
+        secure:true, //wehen using in production change this to true 
+        sameSite:'none'
+    }
+
+    return res
+    .status(200)
+    .clearCookie('accessToken',options)
+    .clearCookie('refreshToken',options)
+    .json(new apiResponse(200,{},"admin logged out"))
+})
+
+
+
 
 module.exports = {
     registerAdmin,
-    loginAdmin
+    loginAdmin,
+    logoutAdmin
 }
+
