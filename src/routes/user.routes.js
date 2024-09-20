@@ -5,6 +5,7 @@ const upload = require('../middlewares/multer.middleware')
 
 const {registerUser,loginUser,logoutUser} = require('../controllers/user.controller');
 const verifyJWt = require("../middlewares/auth.middleware");
+
 //this will display
 router.get('/signup',(req,res)=>{
     res.render('studentsInfo')
@@ -12,10 +13,23 @@ router.get('/signup',(req,res)=>{
 router.get('/home',(req,res)=>{
     res.render('index')
 })
-router.get('/dashboard',(req,res)=>{
+router.get('/dashboard',verifyJWt,(req,res)=>{
     res.render('dashBoard')
 })
+router.get('/profile',(req,res)=>{
+    res.render('userprofile')
+})
+router.get('/messages',(req,res)=>{
+    res.render('userMessage')
+})
+router.get('/status',(req,res)=>{
+    res.render('interviewStatus')
+})
+router.get('/network',(req,res)=>{
+    res.render('network')
+})
 
+//main backend for particular click/command/instruction
 router.route("/register").post(
     upload.fields([ 
         {
@@ -42,7 +56,7 @@ router.route("/register").post(
             name:'class12',
             maxCount:1
         },
-        {
+        { 
             name:'class10',
             maxCount:1
         },
@@ -55,15 +69,7 @@ router.route("/register").post(
             maxCount:1
         }
     ]),registerUser)
-router.get('/signup',(req,res)=>{
-    res.render('studentsInfo')
-})
-router.get('/home',(req,res)=>{
-    res.render('index')
-})
-router.get('/dashboard',(req,res)=>{
-    res.render('dashBoard')
-})
+
 
 
 

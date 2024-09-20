@@ -12,7 +12,6 @@
             background-size: cover;
             padding: 30px;
         }
-
         form {
             background-color: #ffffff;
             border-radius: 8px;
@@ -93,7 +92,7 @@
 </head>
 <body>
 
-    <form id="registrationForm" action="/user/register" method="post">
+    <form id="registrationForm" action="/user/register" method="post" enctype="multipart/form-data">
         <!-- Personal Information Step -->
         <div id="personalInfo" class="step">
             <h3>Student's Personal Information</h3>
@@ -169,7 +168,7 @@
             <div class="row">
                 <div class="mb-3 col-md-6">
                     <label for="DispPic" class="form-label">Profile Picture</label>
-                    <input id="DispPic" name="DispPic" type="file" class="form-control" accept="image/*" onchange="previewProfilePicture(event)">
+                    <input id="DispPic" name="DispPic" type="file" class="form-control"  onchange="previewProfilePicture(event)">
 
                 </div>
                 <div class="mb-3 col-md-6">
@@ -192,11 +191,11 @@
             <div class="row">
                 <div class="mb-3 col-md-6">
                     <label for="ssc" class="form-label">Upload your class 10th marksheet:</label>
-                    <input type="file" id="ssc" name="class10" class="form-control" accept=".pdf,.doc,.docx,.txt">
+                    <input type="file" id="ssc" name="class10" class="form-control" >
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="hsc" class="form-label">Upload your 12th/TY diploma marksheet:</label>
-                    <input type="file" id="hsc" name="class12" class="form-control" accept=".pdf,.doc,.docx,.txt">
+                    <input type="file" id="hsc" name="class12" class="form-control">
                 </div>
             </div>
             <div class="row">

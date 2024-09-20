@@ -81,7 +81,7 @@ const registerUser = asyncHandler(async (req,res)=>{
     // const resumeLocalPath = req.files?.resume[0]?.path
     // const certificationsLocalPath = req.files?.certifications[0]?.path
 
-    
+     
     const researchPaperLocalPath = req.files?.researchPaper?.[0]?.path;
     if (!researchPaperLocalPath) {
         throw new apiError('Research paper is required', 400);
@@ -167,6 +167,8 @@ const registerUser = asyncHandler(async (req,res)=>{
         lor:LOR.url,
         name
     })
+    console.log(user);
+    
 
     const userCreated =  await User.findById(user._id).select(' -password -refreshToken')
     if (!userCreated) {
@@ -174,21 +176,19 @@ const registerUser = asyncHandler(async (req,res)=>{
     }
 
     return res
-    .status(201).json(
-        new apiResponse(200,userCreated,'user registered successfully')
-    )
-    .render('index')//yaha pe 
+    // .status(201).json(
+    //     new apiResponse(200,userCreated,'user registered successfully')
+    // )
+    .render('index');//yaha pe 
 })
 
 const loginUser = asyncHandler(async(req,res)=>{
-    const {email,password,userName} = req.body
-    if (!(email||userName)) {
+    const {password,usernamOrEmail} = req.body
+    if (!usernamOrEmail) {
         throw new apiError('enter userName or password for authorization',400)
     }
 
-    const user = await User.findOne({
-        $or : [{email},{userName}]
-    })
+    const user = await User.findOne({userName: req.body.usernamOrEmail})
 
     if (!user) {
         throw new apiError('user does not exist',404)
@@ -213,15 +213,16 @@ const loginUser = asyncHandler(async(req,res)=>{
     return res.status(200)
     .cookie('accessToken',accessToken,options)
     .cookie('refreshToken',refreshToken,options)
-    .json(
-        new apiResponse(
-            200,
-            {
-                user:loginUser,accessToken,refreshToken
-            },
-            "user logged in successfully"
-        )
-    )
+    // .json(
+    //     new apiResponse(
+    //         200,
+    //         {
+    //             user:loginUser,accessToken,refreshToken
+    //         },
+    //         "user logged in successfully"
+    //     )
+    // )
+    .redirect('dashBoard')
 
 
 })

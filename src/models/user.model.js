@@ -39,7 +39,7 @@ const UserSchema = new mongoose.Schema({
     DOB:{
         type:Date,
         required:true,
-    },
+    }, 
     ProgStartYear:{
         type:Number,
         required:true,

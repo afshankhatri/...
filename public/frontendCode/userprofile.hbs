@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>bencho yaha pe profile k releted saman dal na hai </h1>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- reference --}}
+{{!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile</title>
+
+   <style>
+/* General styling */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .profile-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid #2ecc71;
+        padding-bottom: 20px;
+        margin-bottom: 25px;
+      }
+      
+      #profile-pic {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 3px solid #2ecc71;
+        object-fit: cover;
+      }
+      
+      #change-photo-btn {
+        background-color: #27ae60;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 14px;
+        display: none;
+      }
+      
+      .edit-btn, .save-btn {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+      
+      .edit-btn:hover, .save-btn:hover {
+        background-color: #2980b9;
+      }
+      
+      .save-btn {
+        display: none;
+        margin-top: 20px;
+        background-color: #2ecc71;
+      }
+      
+      .bio-section {
+        background-color: #fafafa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border-left: 4px solid #2ecc71;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      }
+      
+      #bio-text {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.6;
+      }
+      
+      /* Profile Info and Subcategory Styling */
+      .profile-info {
+        display: block; /* Ensure the profile info sections stack vertically */
+      }
+      
+      .info-section {
+        background-color: #fafafa;
+        padding: 20px;
+        margin-bottom: 20px; /* Spacing between sections */
+        border-radius: 10px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      }
+      
+      h3 {
+        color: #2ecc71;
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+      
+      p {
+        margin: 10px 0;
+      }
+      
+      .info-field {
+        color: #333;
+        font-size: 14px;
+      }
+      
+      .info-field.non-editable {
+        font-weight: bold;
+        color: #666;
+      }
+      
+      input[type="text"], input[type="file"], textarea {
+        display: none; /* Hide all inputs initially */
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: border-color 0.3s ease;
+      }
+      
+      input[type="file"] {
+        padding: 10px;
+      }
+      
+      input[type="text"]:focus, input[type="file"]:focus, textarea:focus {
+        border-color: #3498db;
+      }
+      
+      textarea {
+        resize: vertical;
+      }
+      
+      /* Responsive styling */
+      @media screen and (max-width: 768px) {
+        .profile-header {
+          flex-direction: column;
+          text-align: center;
+        }
+      
+        .info-section {
+          width: 100%;
+        }
+      }
+      
+      /* File preview styling */
+      .file-preview {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+      }
+      
+      .file-preview img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+      
+      .file-preview a {
+        text-decoration: none;
+        color: #3498db;
+        font-weight: 500;
+      }
+      </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <img src="default-profile.jpg" id="profile-pic" alt="Profile Picture">
+      <input type="file" id="upload-pic" style="display:none;" />
+      <button id="change-photo-btn" onclick="uploadPic()">Change Photo</button>
+      <h2 id="user-name">John Doe</h2>
+      <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+    </div>
+
+    <!-- Short Bio Section -->
+    <div class="bio-section">
+      <h3>Short Bio</h3>
+      <p id="bio-text" class="non-editable">A passionate learner with interests in AI and data science.</p>
+    </div>
+
+    <div class="profile-info">
+      <div class="info-section">
+        <h3>Personal Details</h3>   
+        <p><strong>Username:</strong> <span class="info-field non-editable" id="userName">john_doe</span></p>
+        <p><strong>Date of Birth:</strong> <span class="info-field non-editable" id="dob">01/01/2000</span></p>
+        <p><strong>Email:</strong> <span class="info-field non-editable" id="email">john@example.com</span></p>
+        <p><strong>Contact:</strong> <span class="info-field non-editable" id="contactNum">1234567890</span></p>
+      </div>
+
+      <div class="info-section">
+        <h3>Educational Information</h3>
+        <p><strong>Graduation Year:</strong> <span class="info-field non-editable" id="graduation-year">2024</span></p>
+        <p><strong>Program Start Year:</strong> <span class="info-field non-editable" id="prog-start-year">2020</span></p>
+        <p><strong>CGPA:</strong> <span class="info-field non-editable" id="CGPA">8.5</span></p>
+        <p><strong>Class 10 Marksheet:</strong> <input type="file" id="class10-file" style="display:none;" onchange="displayFile('class10-file', 'class10-link')"><span id="class10-link"></span></p>
+        <p><strong>Class 12 Marksheet:</strong> <input type="file" id="class12-file" style="display:none;" onchange="displayFile('class12-file', 'class12-link')"><span id="class12-link"></span></p>
+        <p><strong>Department:</strong> <span class="info-field non-editable" id="department">Computer Science</span></p>
+      </div>
+
+      <div class="info-section">
+        <h3>Professional Information</h3>
+        <p><strong>LinkedIn:</strong> <a class="info-field non-editable" id="linkedin" href="#">johnlinkedin</a></p>
+        <p><strong>Internship Certificate:</strong> <input type="file" id="internship-file" style="display:none;" onchange="displayFile('internship-file', 'internship-link')"><span id="internship-link"></span></p>
+        <p><strong>Research Paper:</strong> <input type="file" id="research-file" style="display:none;" onchange="displayFile('research-file', 'research-link')"><span id="research-link"></span></p>        
+        <p><strong>Certifications:</strong> <span class="info-field non-editable" id="certifications">Certified Python Developer</span></p>
+        <p><strong>GATE Score:</strong> <span class="info-field non-editable" id="gate-score">90</span></p>
+        <p><strong>Gate Mark Sheet:</strong> <input type="file" id="gate-mark-sheet-upload" style="display:none;" onchange="displayFile('gate-mark-sheet-upload', 'gate-mark-sheet-preview')"><span id="gate-mark-sheet-preview"></span></p>
+      </div>
+
+      <div class="info-section">
+        <h3>Additional Information</h3>
+        <p><strong>LOR:</strong> <input type="file" id="lor-file" style="display:none;" onchange="displayFile('lor-file', 'lor-link')"><span id="lor-link"></span></p>
+        <p><strong>Resume:</strong> <input type="file" id="resume-file" style="display:none;" onchange="displayFile('resume-file', 'resume-link')"><span id="resume-link"></span></p>
+        <p><strong>Extra Curriculars:</strong> <span class="info-field non-editable" id="extra-curriculars">Chess, Debate</span></p>
+        <p><strong>Description:</strong> <span class="info-field non-editable" id="description">Passionate about AI and machine learning.</span></p>
+        <p><strong>Other Certificate:</strong> <input type="file" id="other-certificate-upload" style="display:none;" onchange="displayFile('other-certificate-upload', 'other-certificate-preview')"><span id="other-certificate-preview"></span></p>
+      </div>
+    </div>
+
+    <button class="save-btn" style="display:none;" onclick="saveChanges()">Save Changes</button>
+  </div>
+
+  <script>
+    let isEditing = false;
+
+    function editProfile() {
+        isEditing = !isEditing;
+
+        const editBtn = document.querySelector('.edit-btn');
+        const saveBtn = document.querySelector('.save-btn');
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        const textInputs = document.querySelectorAll('input[type="text"], textarea');
+        const changePhotoBtn = document.getElementById('change-photo-btn');
+    
+        if (isEditing) {
+            editBtn.textContent = "Cancel";
+            saveBtn.style.display = 'block';
+            changePhotoBtn.style.display = 'block';  // Show "Change Profile Photo" button when editing
+            fileInputs.forEach(input => input.style.display = 'inline');  // Show file inputs
+            makeFieldsEditable();
+        } else {
+            editBtn.textContent = "Edit Profile";
+            saveBtn.style.display = 'none';
+            changePhotoBtn.style.display = 'none';  // Hide "Change Profile Photo" button when not editing
+            fileInputs.forEach(input => input.style.display = 'none');  // Hide file inputs
+            makeFieldsNonEditable();
+        }
+    }
+
+    function makeFieldsEditable() {
+        const fields = document.querySelectorAll('.info-field');
+        fields.forEach(field => {
+            const fieldValue = field.textContent;
+            if (field.id === "linkedin") {
+                field.innerHTML = `<input type="text" value="${fieldValue}" id="linkedin-input">`;
+            } else {
+                field.innerHTML = `<input type="text" value="${fieldValue}">`;
+            }
+        });
+
+        const bioText = document.getElementById('bio-text');
+        bioText.innerHTML = `<textarea>${bioText.textContent}</textarea>`;
+    }
+
+    function makeFieldsNonEditable() {
+        const fields = document.querySelectorAll('.info-field');
+        fields.forEach(field => {
+            const inputField = field.querySelector('input');
+            if (inputField) {
+                const newValue = inputField.value;
+                if (field.id === "linkedin") {
+                    field.innerHTML = `<a href="#" target="_blank">${newValue}</a>`;
+                } else {
+                    field.textContent = newValue;
+                }
+            }
+        });
+
+        const bioText = document.getElementById('bio-text');
+        const textarea = bioText.querySelector('textarea');
+        bioText.textContent = textarea.value;
+    }
+
+    function saveChanges() {
+        alert('Profile changes saved.');
+        isEditing = false;
+        makeFieldsNonEditable();
+        document.querySelector('.edit-btn').textContent = "Edit Profile";
+        document.querySelector('.save-btn').style.display = 'none';
+        document.getElementById('change-photo-btn').style.display = 'none';
+        document.querySelectorAll('input[type="file"], input[type="text"], textarea').forEach(input => input.style.display = 'none');
+    }
+
+    function displayFile(inputId, linkId) {
+        const input = document.getElementById(inputId);
+        const link = document.getElementById(linkId);
+        const file = input.files[0];
+
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+
+            if (file.type.startsWith('image/')) {
+                link.innerHTML = `<img src="${fileURL}" alt="Preview" style="max-width: 100px; max-height: 100px; cursor: pointer;" onclick="window.open('${fileURL}', '_blank')">`;
+            } else if (file.type.startsWith('application/pdf')) {
+                link.innerHTML = `<a href="${fileURL}" target="_blank" style="cursor: pointer;">View PDF</a>`;
+            } else {
+                link.innerHTML = 'File type not supported';
+            }
+        } else {
+            link.innerHTML = '';
+        }
+    }
+
+    function uploadPic() {
+        document.getElementById('upload-pic').click();
+    }
+
+    document.getElementById('upload-pic').addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+            const profilePic = document.getElementById('profile-pic');
+            profilePic.src = fileURL;
+
+            profilePic.style.cursor = 'pointer';  
+            profilePic.onclick = function () {
+                window.open(fileURL, '_blank');
+            };
+
+            document.getElementById('change-photo-btn').style.display = 'none'; 
+        }
+    });
+
+  </script>
+</body>
+</html> --}}

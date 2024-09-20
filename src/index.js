@@ -34,7 +34,6 @@ app.use("/admin",routeradmin)
 
 
 
-
 connectDB()
 .then(()=>{
     app.on("error",(error)=>{ //double quotes me error is liye likha hai Q K app.on bahut si chizo k liye kaam ata hai..us me se apne ko error wala kam kara na hai isliye wo likha hai..just like we do in addeventlistner("click",()=>{})
@@ -44,7 +43,7 @@ connectDB()
     app.listen(port,()=>{
         console.log(`server is running on port ${port} `);
         
-    } )
+    } ) 
 })
 .catch((error)=>{
     console.log('connection failed here in index.js (.cathc)',error);
@@ -57,33 +56,33 @@ connectDB()
 // })
 // app.post("/signup",async(req,res)=>{
 //     // const {collegedomain,email,password,userName,name,linkedin,GraduationYear,ProgStartYear,DOB,contactNum,class10,resume,lor,cgpa,DispPic,Department,extraCurriculars,description,gateScore,class12,researchPaper,internship,certifications} = req.body
-//     const data = {
-//         collegedomain:req.body.collegedomain,
-//         email:req.body.email,
-//         password:req.body.password,
-//         userName:req.body.userName,
-//         name:req.body.name,
-//         linkedin:req.body.linkedin,
-//         GraduationYear:req.body.GraduationYear,
-//         ProgStartYear:req.body.ProgStartYear,
-//         DOB:req.body.DOB,
-//         contactNum:req.body.contactNum,
-//         class10:req.body.class10,
-//         class12:req.body.class12,
-//         resume:req.body.resume,
-//         lor:req.body.lor,
-//         cgpa:req.body.cgpa,
-//         DispPic:req.body.DispPic,
-//         Department:req.body.Department,
-//         extraCurriculars:req.body.extraCurriculars,
-//         description:req.body.description,
-//         gateScore:req.body.gateScore,
-//         researchPaper:req.body.researchPaper,
-//         internship:req.body.internship,
-//         certifications:req.body.certifications
-//     }
-//     await User.create([data])
-//     res.render('dashBoard')
+    // const data = {
+    //     collegedomain:req.body.collegedomain,
+    //     email:req.body.email,
+    //     password:req.body.password,
+    //     userName:req.body.userName,
+    //     name:req.body.name,
+    //     linkedin:req.body.linkedin,
+    //     GraduationYear:req.body.GraduationYear,
+    //     ProgStartYear:req.body.ProgStartYear,
+    //     DOB:req.body.DOB,
+    //     contactNum:req.body.contactNum,
+    //     class10:req.body.class10,
+    //     class12:req.body.class12,
+    //     resume:req.body.resume,
+    //     lor:req.body.lor,
+    //     cgpa:req.body.cgpa,
+    //     DispPic:req.body.DispPic,
+    //     Department:req.body.Department,
+    //     extraCurriculars:req.body.extraCurriculars,
+    //     description:req.body.description,
+    //     gateScore:req.body.gateScore,
+    //     researchPaper:req.body.researchPaper,
+    //     internship:req.body.internship,
+    //     certifications:req.body.certifications
+    // }
+    // await User.create([data])
+    // res.render('dashBoard')
 
 // })
 
@@ -95,18 +94,18 @@ connectDB()
 // app.post('/home', async (req, res) => {
 //     try {
 //         // Look for user by username or email (depending on what the user provided)
-//         const check = await User.findOne({ userName: req.body.usernamOrEmail });// req.body<name>    ye name ki jagah wo name dall jo frontend pe dale ha apun ne name
+        // const check = await User.findOne({ userName: req.body.usernamOrEmail });// req.body<name>    ye name ki jagah wo name dall jo frontend pe dale ha apun ne name
 //         if (!check) {
 //             return res.send('User not found');
 //         }
 
-//         const isMatch = await bcrypt.compare(req.body.password, check.password);
+        // const isMatch = await bcrypt.compare(req.body.password, check.password);
 
-//         if (isMatch) {
-//             return res.render('dashBoard');
-//         } else {
-//             return res.send('Wrong password');
-//         }
+        // if (isMatch) {
+        //     return res.render('dashBoard');
+        // } else {
+        //     return res.send('Wrong password');
+        // }
 
 //     } catch (error) {
 //         return res.send(`Error during login: ${error}`);
