@@ -4,6 +4,7 @@ const upload = require('../middlewares/multer.middleware')
 
 
 const {registerUser,loginUser,logoutUser,getUserProfile} = require('../controllers/user.controller');
+// const {registerUser,loginUser,logoutUser} = require('../controllers/user.controller');
 const verifyJWt = require("../middlewares/auth.middleware");
 
 //this will display
@@ -17,7 +18,8 @@ router.get('/dashboard',verifyJWt,(req,res)=>{
     res.render('dashBoard')
 })
 router.get('/profile',(req,res)=>{
-    res.render('userProfile')
+    // res.render('userProfile') just check once which one is correct
+    res.render('userprofile')
 })
 router.get('/messages',(req,res)=>{
     res.render('userMessage')

@@ -201,6 +201,7 @@ const loginUser = asyncHandler(async(req,res)=>{
     }
 
    const {accessToken,refreshToken} = await generateAccessAndRefreshToken(user._id)
+    // const {accessToken,refreshToken} = await generateAccessAndRefreshToken(user._id)
 
     const loginUser = await User.findById(user._id).select('-password -refreshToken')
     const options = {//this will allow only server to mdodify the cookies
@@ -208,8 +209,6 @@ const loginUser = asyncHandler(async(req,res)=>{
         secure:false,
         sameSite:'Lax'
     }
-    // console.log(loginUser);
-    
 
     return res.status(200)
     .cookie('accessToken',accessToken,options)
@@ -223,14 +222,18 @@ const loginUser = asyncHandler(async(req,res)=>{
     //         "user logged in successfully"
     //     )
     // )
+ 
     // .render('dashBoard',{loginUser})
     .render('dashBoard',{loginUser});
  
+    // .redirect('dashBoard') //do chiz ek sath render nai kar sakte hai
+
 
 })
 
 const logoutUser = asyncHandler(async(req,res)=>{
-    await User.findByIdAndUpdate( 
+    // await User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
         req.user._id,
         {
             $set:{
