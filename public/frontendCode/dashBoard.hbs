@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="mainpage.css">
+    <style>
+      body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #f0f0f0; 
+    color: #333; 
+}
+nav {
+    background: linear-gradient(135deg, #ffffff, #f5f5f5); 
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+.logo-21 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo-21 li {
+    text-align: center;
+    color: #333; 
+    transition: transform 0.3s, color 0.3s; 
+}
+
+.logo-21 ion-icon {
+    font-size: 30px;
+    display: block;
+    transition: color 0.3s; 
+}
+
+.logo-21 span {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px; 
+}
+
+.logo-21 li:hover {
+    transform: scale(1.1); 
+    color: #007bff; 
+}
+
+.logo-21 ion-icon:hover {
+    color: #007bff; 
+}
+
+.verse {
+    text-align: center;
+    padding: 20px; 
+    margin: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8); 
+    color: #333; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+h3 {
+    font-size: 24px;
+    margin: 0;
+    color: #007bff; 
+}
+
+p {
+    font-size: 16px;
+    margin: 5px 0 0;
+}
+
+section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.updates, .news {
+    height: 70vh;
+    width: 45vw;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(145deg, rgba(255, 230, 150, 0.6), rgba(255, 230, 150, 0.3)); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: transform 0.3s, background 0.3s; 
+}
+
+.updates:hover, .news:hover {
+    transform: scale(1.02);
+    background: linear-gradient(145deg, rgba(255, 230, 150, 0.8), rgba(255, 230, 150, 0.5)); 
+}
+    </style>
+    <title>MainPage</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-21">
+            <ul>
+                <a href="" style="text-decoration: none;"><li><ion-icon name="home-outline"></ion-icon><span>Home</span></li></a>
+                <a href="/user/status" style="text-decoration: none;"><li><ion-icon name="clipboard-outline"></ion-icon><span>Status</span></li></a>
+                <a href="/user/messages" style="text-decoration: none;"><li><ion-icon name="chatbubble-ellipses-outline"></ion-icon><span>Messages</span></li></a>
+                <a href="/user/network" style="text-decoration: none;"><li><ion-icon name="people-outline"></ion-icon><span>Network</span></li></a>
+                <a href="/user/profile" style="text-decoration: none;"><li><ion-icon name="person-circle-outline"></ion-icon><span>Profile</span></li></a>
+                <li><ion-icon name="menu-outline"></ion-icon><span>Menu</span></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="verse">
+        <h3> ربِّ زِدْنِي عِلْماً </h3>
+        <p>"My lord, increase {{loginUser.userName}} in my knowledge"</p>
+    </div>
+    <main>
+        <section>
+            <div class="updates">
+                <h1>updates</h1>
+            </div>
+            <div class="news">
+                <h1>news</h1>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
