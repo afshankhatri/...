@@ -5,6 +5,7 @@ const User = require('../models/user.model')
 const apiResponse = require('../utils/apiResponse')
 const path = require('path')
 const upload = require('../middlewares/multer.middleware')
+const { profile } = require('console')
 // const { options } = require('../app')
 
 
@@ -184,8 +185,8 @@ const registerUser = asyncHandler(async (req,res)=>{
 
 const loginUser = asyncHandler(async(req,res)=>{
     const {password,usernamOrEmail} = req.body
-    if (!usernamOrEmail) {
-        throw new apiError('enter userName or password for authorization',400)
+    if (!usernamOrEmail) { 
+        throw new apiError('enter userName and password for authorization',400)
     }
 
     const user = await User.findOne({userName: req.body.usernamOrEmail})
@@ -222,10 +223,7 @@ const loginUser = asyncHandler(async(req,res)=>{
     //         "user logged in successfully"
     //     )
     // )
- 
-    // .render('dashBoard',{loginUser})
-    .render('dashBoard',{loginUser});
- 
+    .render('dashBoard');
     // .redirect('dashBoard') //do chiz ek sath render nai kar sakte hai
 
 
@@ -258,31 +256,93 @@ const logoutUser = asyncHandler(async(req,res)=>{
 
 })
 
-// const getUserProfile = asyncHandler(async (req, res) => {
-//     // Fetch the user from the database using the ID in req.user._id
-//     const user = await User.findById(req.user._id).select('-password'); // Exclude password from the returned data
 
-//     // Check if the user exists
-//     console.log("proffff",user);
+const getUserProfile = asyncHandler(async (req, res) => {
+    try {
+        // Ensure the user ID exists in the request
+        if (!req.user || !req.user._id) {
+            return res.status(400).json(new apiResponse(400, {}, "User ID is missing"));
+        }
+
+        // Fetch the user data while excluding sensitive fields
+        const user = await User.findById(req.user._id).select('-password -refreshToken');
+        
+        if (!user) {
+            return res
+            .status(404)
+            .json(new apiResponse(404, {}, "User not found"));
+        }
+
+        return res
+        .status(200)
+        // .json(new apiResponse(200, user, "User profile retrieved successfully"));
+        .render('userProfile',{user})
+    } catch (error) {
+        return res.
+        status(500).
+        json(new apiResponse(500, {}, "Server error"));
+    }
+});
+
+const getUserEdit = asyncHandler(async(req,res)=>{
+
+    //this is not working properly ... have a look at this 
+
+    // res.send('hey')
+    // return res.render('index')
+    try {
+        const {name,username,
+            // email,DispPic,description,password,contact,class12,class10,cgpa,startYear,graduationYear,Department,resume,extraCurriculars,lor,gateScore,certifications,researchPaper,internship,linkedin,collegeMain,dob
+        } = req.body    
+        
+        console.log(req.user);
+        
+        if (!req.user || !req.user._id) {
+            return res.status(400).json(new apiResponse(400, {}, "User ID is missing"));
+        }
+        const user = await User.findByIdAndUpdate(
+            req.user._id,
+            {
+                $set:{
+                    name,
+                    // DOB:dob,
+                    username,
+                    // email:email,
+                    // DispPic:DispPic,
+                    // description:description,
+                    // password:password,
+                    // contactNum:contact,
+                    // class10:class10,
+                    // class12:class12
+                }
+            },
+            {
+                new:true,
+                runValidators:true
+            }            
+        ).select('-refreshToken')
     
-//     if (!user) {
-//         return res.status(404).json(new apiResponse(404, {}, "User not found"));
-//     }
+        if (!user) {
+            return res
+            .status(404)
+            .json(new apiResponse(404, {}, "User not found"));
+        }
 
-//     // Return the user's profile data
-//     return res
-//     .status(200)
-//     .cookie('accessToken',accessToken,options)
-//     .cookie('refreshToken',refreshToken,options)
-    
-//     .json(new apiResponse(200, user, "User profile fetched successfully"));
-// });
+        return res
+        .status(200)
+        .json(new apiResponse(200, user, "User profile updated successfully"));
 
-
+    } catch (error) {
+        return res.
+        status(500).
+        json(new apiResponse(500, {error}, "Server error")); //error number barabar hai ya nai ...i  am not sure about that
+    }
+})
 
 module.exports = {
     registerUser,
     loginUser,
     logoutUser,
-    // getUserProfile
+    getUserProfile,
+    getUserEdit
 }

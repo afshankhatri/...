@@ -120,7 +120,7 @@ const UserSchema = new mongoose.Schema({
     //     ref:'users' //chances hai
     // }
 //}
-    
+
 },{timestamps:true})
 
 

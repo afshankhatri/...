@@ -67,30 +67,32 @@ const registerAdmin = asyncHandler(async(req,res)=>{
 
 
     const adminCreated = await Admin.findById(admin._id).select('-password -refreshToken')
+    console.log(adminCreated);
+    
     if (!adminCreated) {
         throw new apiError('something went wrong while registering admin ,try again later',500)
     }
-    return res.status(201).json(
+    return res
+    .status(201)
+    .json(
         new apiResponse(200,adminCreated,"admin profile created successfully")
     )
     
 }) 
 
 const loginAdmin = asyncHandler(async(req,res)=>{
-    const {email,password,userName} = req.body
-    if(!(email || userName)){
+    const {passWord,usernamEmail} = req.body
+    if(!usernamEmail){
         throw new apiError('enter username or email for authorization of admin',400)
     }
 
-    const admin = await Admin.findOne({
-        $or:[{email},{userName}]
-    })
+    const admin = await Admin.findOne({userName: req.body.usernamEmail})
 
     if (!admin) {
         throw new apiError("admin does not exist ",404)
     }
 
-    const isPasswordValid = await admin.isPasswordCorrect(password)
+    const isPasswordValid = await admin.isPasswordCorrect(passWord)
     if (!isPasswordValid) {
         throw new apiError ('incorrect password for admin ',401)
     }
@@ -140,7 +142,6 @@ const logoutAdmin = asyncHandler(async(req,res)=>{
     .clearCookie('refreshToken',options)
     .json(new apiResponse(200,{},"admin logged out"))
 })
-
 
 
 

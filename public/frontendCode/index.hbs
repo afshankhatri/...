@@ -1,993 +1,1065 @@
-{{!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        h1{
-    color: red;
-}
-    </style>
-</head>
-<body>
-    <h1>hey bhai kaise ho?</h1>
-<img src="/frontendCode/photos/cllg_pic1.jpg" alt="Image Description">
-
-<script>
-    const h1 = document.querySelector('h1')
-    h1.addEventListener('mouseover',(e)=>{
-    e.preventDefault()
-    h1.style.color= "black"
-})
-</script>
-</body>
-</html> --}}
-
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Landing Page</title>
-  <!-- <link href="style.css" rel="stylesheet" type="text/css" /> -->
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
-  <!-- <script src="script.js"></script> -->
-  <style>
-      @font-face {
-    font-family: Copper;
-    src: url(./OnlineWebFonts_COM_d6c0dea948a181e48bec57d33646bcb8.zip);
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Copper;
-  }
-
-  html,
-  body {
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-  }
-
-  .main {
-    position: relative;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .nav {
-    height: 100px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    z-index: 10;
-  }
-
-  .img-fluid {
-    height: 50px;
-    width: auto;
-    margin: 27px;
-  }
-
-  .pt2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .nav>.pt2 a {
-    text-decoration: none;
-    color: #222;
-    margin: 0 10px;
-  }
-
-  .nav>.pt2 a:nth-last-child(1) {
-    padding: 7px 18px;
-    border-radius: 50px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #000;
-  }
-
-
-  .nav>.pt2 a:nth-last-child(1) h5 {
-    font-weight: 100;
-    position: relative;
-    z-index: 99;
-  }
-
-  .nav>.pt2 a:nth-last-child(1) #green {
-    width: 100%;
-    background-color: springgreen;
-    position: absolute;
-    top: 0;
-    left: -100%;
-    height: 100%;
-    transition: left 0.4s ease;
-  }
-
-  .nav>.pt2 a:nth-last-child(1):hover #green {
-    left: 0;
-  }
-
-  .page1 {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  .img1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    z-index: 0;
-    opacity: 0.5;
-    background: hsla(0, 0%, 88%, .7);
-  }
-
-  .main h1 {
-    font-family: copper;
-    font-size: 3.4vw;
-    color: #fff;
-    z-index: 20;
-    position: relative;
-    margin: 0;
-    text-align: center;
-    /* Align the text to the left */
-    padding-left: 20px;
-    /* Add padding to give space from the left edge */
-  }
-
-  .main h1::after {
-    content: "";
-    position: absolute;
-    width: 30%;
-    height: 17px;
-    background-image: url(https://thisisdigital.co.uk/dist/images/underline-green.svg);
-    top: 85%;
-    left: 50%;
-    background-size: cover;
-    transform: translate(-50%, 0);
-  }
-
-  .heading {
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    /* Adjust to position the heading div on the left center */
-    transform: translateY(-50%);
-    /* Center vertically */
-    display: flex;
-    flex-direction: column;
-    height: 400px;
-    width: 800px;
-    background: rgba(1, 0, 36, .5);
-    border-radius: 20px;
-    z-index: 20;
-    padding: 20px;
-  }
-
-  .heading h1 {
-    font-size: 3.4vw;
-    color: #fff;
-    text-align: center;
-    /* Align h1 text to the left */
-  }
-
-  .heading p {
-    color: #fff;
-    font-size: 30px;
-    text-align: left;
-    /* Align paragraph text to the left */
-    margin-top: 20px;
-    padding-left: 20px;
-    /* Match padding with the h1 */
-  }
-
-
-
-  /* signIn  */
-
-  /* Login Block Styling */
-  .Sblock {
-    position: absolute;
-    right: 10%;
-    max-width: 400px;
-    /* Set a max width similar to Facebook's form */
-    margin: 50px auto;
-    /* Center the form horizontally and add top margin */
-    padding: 20px;
-    background-color: #fff;
-    /* Light grey background similar to Facebook */
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    /* Soft shadow for depth */
-  }
-
-  /* Form Heading */
-  .Sblock h3 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    font-family: Copper;
-  }
-
-  /* Input Group Styling */
-  .input-group {
-    margin-bottom: 15px;
-  }
-
-  .input-group .form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccd0d5;
-    /* Soft grey border */
-  }
-
-  .input-group input::placeholder {
-    color: #999;
-    /* Placeholder text color */
-  }
-
-  /* Log In Button */
-  #submit {
-    width: 100%;
-    padding: 10px;
-    background-color: springgreen;
-    /* Facebook blue for the button */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-
-  #submit:hover {
-    background-color: springgreen;
-    /* Slightly darker blue on hover */
-  }
-
-  /* Forgot Password Link */
-  .forgot-password-link {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-    color: springgreen;
-    text-decoration: none;
-    font-size: 0.9rem;
-  }
-
-  .forgot-password-link:hover {
-    text-decoration: underline;
-  }
-
-  /* Action Block Styling */
-  .action-Sblock {
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .action-Sblock p {
-    position: absolute;
-    align-items: center;
-    left: 10px;
-    color: #000;
-    margin-bottom: 10px;
-    font-size: 1rem;
-  }
-
-  .action-Sblock a {
-    color: springgreen;
-    text-decoration: none;
-    font-size: 1 rem;
-
-  }
-
-  .action-Sblock a:hover {
-    text-decoration: underline;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .Sblock {
-      width: 90%;
-      /* Full width on smaller screens */
-    }
-  }
-  .button-wrapper {
-    position: absolute;
-    right: 50px;
-    bottom: 50px;
-    display: flex;
-    gap: 20px;
-    z-index: 20;
-
-  }
-
-  .animated-button {
-    /*removed from screen  */
-    display: none;
-    padding: 10px 20px;
-    border: 1px solid #000;
-    border-radius: 50px;
-    color: #222;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    position: relative;
-    overflow: hidden;
-    transition: left 0.4s ease;
-    text-align: center;
-  }
-
-  .animated-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: springgreen;
-    transition: transform 0.4s ease;
-    transform: scaleX(0);
-    transform-origin: right;
-    z-index: 1;
-  }
-
-  .animated-button:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
-  .animated-button span {
-    position: relative;
-    z-index: 99;
-  }
-
-
-  #page2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: black;
-    /* Assuming a black background for page2 */
-    color: #fff;
-    /* White text color */
-  }
-
-  #heading-x1 {
-    margin-top: 10px;
-    position: absolute;
-    left: 25%;
-    text-align: center;
-    margin-bottom: 40px;
-    max-width: 800px;
-  }
-
-  #heading-x1 h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-  }
-
-  #heading-x1 p {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    color: #ccc;
-  }
-
-  .container {
-    top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 5%;
-    margin: 5%;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 250px;
-    min-height: 150px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    text-align: center;
-  }
-
-  .card h2 {
-    margin-top: 0;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-  }
-
-  .card p {
-    font-size: 16px;
-    line-height: 1.5;
-    color: #555;
-  }
-
-  @media (max-width: 768px) {
-    .card {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .card h2 {
-      font-size: 20px;
-    }
-
-    .card p {
-      font-size: 14px;
-    }
-  }
-
-
-
-  .page3 {
-    height: 50vh;
-    width: 100vw;
-    background-color: #fff;
-  }
-
-  .ekline{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-  }
-/* Adjust swiper container */
-.page3 {
-  height: 60vh;
-  width: 100vw;
-  background-color: #f0f0f0; /* Lighter background for contrast */
-  padding: 20px 0; /* Space around slider */
-}
-
-.swiper-heading {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  color: #333;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-/* Update swiper styling */
-.swiper {
-  width: 80%; /* Reduce the size for a centered look */
-  height: 80%;
-  margin: auto; /* Center the swiper */
-}
-
-.swiper-slide {
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 10%;
-  top: 10%;
-
-
-}
-
-.swiper-slide img {
-  width: 80%; /* Reduce image size */
-  height: 60%; /* Keep the height consistent */
-  object-fit: cover;
-  border-radius: 10px; /* Softer edges for a modern look */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-  transition: transform 0.3s ease-in-out; /* Smooth hover effect */
-}
-
-.swiper-slide img:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
-}
-
-/* Adjust buttons */
-.swiper-button-next,
-.swiper-button-prev {
-  color: #000;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-}
-
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  background: rgba(0, 0, 0, 0.6); /* Darker background on hover */
-}
-
-/* Pagination dots */
-.swiper-pagination-bullet {
-  background-color: #000;
-  opacity: 0.7;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: springgreen;
-  opacity: 1;
-}
-/* <!-- footer --> */
-footer {
-  width: 100%;
-  background: linear-gradient(to right, #00093c, #2d0b00);
-  color: #fff;
-  padding: 60px 0 20px;
-  font-size: 13px;
-  line-height: 20px;
-  position: relative;
-  z-index: 1;  /* Ensures it doesn't interfere with other sections */
-}
-
-footer .row {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-footer .col {
-  flex-basis: 25%;
-  padding: 10px;
-}
-
-footer .col:nth-child(2), footer .col:nth-child(3) {
-  flex-basis: 20%;
-}
-
-footer .logo {
-  width: 100px;
-  margin-bottom: 20px;
-}
-
-footer .col h3 {
-  margin-bottom: 25px;
-  position: relative;
-}
-
-footer .email-id {
-  width: fit-content;
-  border-bottom: 1px solid #ccc;
-  margin: 20px 0;
-}
-
-footer ul li {
-  list-style: none;
-  margin-bottom: 10px;
-}
-
-footer ul li a {
-  text-decoration: none;
-  color: #fff;
-  transition: color 0.3s;
-}
-
-footer ul li a:hover {
-  color: #ff8c00;
-}
-
-footer form {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 15px;
-  margin-bottom: 30px;
-}
-
-footer form input {
-  width: 100%;
-  background: transparent;
-  color: #ccc;
-  border: none;
-  outline: none;
-}
-
-footer form button {
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-footer form button .fas {
-  font-size: 16px;
-  color: #ccc;
-}
-
-footer .social-icons .fab {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 40px;
-  font-size: 20px;
-  border: 1px solid #fff;
-  margin-right: 10px;
-  color: #2B0B02;
-  background: #fff;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-footer .social-icons .fab:hover {
-  background: #040A38;
-  color: #fff;
-  transform: translateY(-5px);
-}
-
-footer hr {
-  width: 90%;
-  border: 0;
-  border-bottom: 1px solid #ccc;
-  margin: 20px auto;
-}
-
-footer .copyright {
-  text-align: center;
-}
-
-footer .underline {
-  width: 100%;
-  height: 3px;
-  background: #767676;
-  border-radius: 3px;
+    <!DOCTYPE html>
+    <html>
+    
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width">
+      <title>Landing Page</title>
+      <!-- <link href="style.css" rel="stylesheet" type="text/css" /> -->
+      <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+      <!-- <script src="script.js"></script> -->
+      <style>
+          @font-face {
+        font-family: Copper;
+        src: url(./OnlineWebFonts_COM_d6c0dea948a181e48bec57d33646bcb8.zip);
+      }
+    
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Copper;
+      }
+    
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+      }
+    
+      .main {
+        position: relative;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+    
+      .nav {
+        height: 100px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        z-index: 10;
+      }
+    
+      .img-fluid {
+        height: 50px;
+        width: auto;
+        margin: 27px;
+      }
+    
+      .pt2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    
+      .nav>.pt2 a {
+        text-decoration: none;
+        color: #222;
+        margin: 0 10px;
+      }
+    
+      .nav>.pt2 a:nth-last-child(1) {
+        padding: 7px 18px;
+        border-radius: 50px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #000;
+      }
+    
+    
+      .nav>.pt2 a:nth-last-child(1) h5 {
+        font-weight: 100;
+        position: relative;
+        z-index: 99;
+      }
+    
+      .nav>.pt2 a:nth-last-child(1) #green {
+        width: 100%;
+        background-color: springgreen;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        transition: left 0.4s ease;
+      }
+    
+      .nav>.pt2 a:nth-last-child(1):hover #green {
+        left: 0;
+      }
+    
+      .page1 {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+    
+      .img1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        z-index: 0;
+        opacity: 0.5;
+        background: hsla(0, 0%, 88%, .7);
+      }
+    
+      .main h1 {
+        font-family: copper;
+        font-size: 3.4vw;
+        color: #fff;
+        z-index: 20;
+        position: relative;
+        margin: 0;
+        text-align: center;
+        /* Align the text to the left */
+        padding-left: 20px;
+        /* Add padding to give space from the left edge */
+      }
+    
+      .main h1::after {
+        content: "";
+        position: absolute;
+        width: 30%;
+        height: 17px;
+        background-image: url(https://thisisdigital.co.uk/dist/images/underline-green.svg);
+        top: 85%;
+        left: 50%;
+        background-size: cover;
+        transform: translate(-50%, 0);
+      }
+    
+      .heading {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        /* Adjust to position the heading div on the left center */
+        transform: translateY(-50%);
+        /* Center vertically */
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+        width: 800px;
+        background: rgba(1, 0, 36, .5);
+        border-radius: 20px;
+        z-index: 20;
+        padding: 20px;
+      }
+    
+      .heading h1 {
+        font-size: 3.4vw;
+        color: #fff;
+        text-align: center;
+        /* Align h1 text to the left */
+      }
+    
+      .heading p {
+        color: #fff;
+        font-size: 30px;
+        text-align: left;
+        /* Align paragraph text to the left */
+        margin-top: 20px;
+        padding-left: 20px;
+        /* Match padding with the h1 */
+      }
+    
+    
+    
+      /* signIn  */
+    
+  /* Main Sign-In Block Styling */
+.Sblock {
   position: absolute;
-  top: 25px;
-  left: 0;
+  right: 10%;
+  max-width: 450px;
+  margin: 80px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  overflow: visible;
+}
+
+/* Slider Heading for Students/Admin */
+.slider {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: #e9e9e9;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: -30px; /* Visually attaches to the top of the div */
   overflow: hidden;
 }
 
-footer .underline span {
-  width: 15px;
-  height: 100%;
-  background: #fff;
-  border-radius: 3px;
+.slider-option {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
+  color: #555;
+}
+
+.slider-option.active {
+  color: white;
+}
+
+.slider-indicator {
   position: absolute;
-  top: 0;
-  left: 10px;
-  animation: moving 2s linear infinite;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: springgreen;
+  transition: left 0.3s ease, width 0.3s ease;
+  border-radius: 10px;
+  z-index: 1;
 }
 
-@keyframes moving {
-  0% {
-    left: -20px;
-  }
-  100% {
-    left: 100%;
+/* Form Heading */
+.Sblock h3 {
+  color: #333;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  font-size: 1.5rem;
+  font-family: 'Roboto' sans-serif;
+}
+
+/* Input Group Styling */
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group .form-control {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #f4f4f4;
+  transition: border-color 0.3s ease;
+}
+
+.input-group .form-control:focus {
+  border-color: springgreen;
+}
+
+.input-group input::placeholder {
+  color: #999;
+}
+
+/* Log In Button Styling */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: springgreen;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #28a745;
+}
+
+/* Forgot Password Link */
+.forgot-password-link {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #28a745;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+/* Action Block Styling */
+.action-Sblock {
+  margin-top: 20px;
+}
+
+.action-Sblock p {
+  color: #000;
+  font-size: 1rem;
+}
+
+.action-Sblock a {
+  color: springgreen;
+  text-decoration: none;
+}
+
+.action-Sblock a:hover {
+  text-decoration: underline;
+}
+
+/* Hidden forms */
+.form {
+  display: none;
+}
+
+.form.active {
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .Sblock {
+    width: 90%;
   }
 }
 
-@media (max-width: 900px) {
-  footer .col {
-    flex-basis: 45%;
-  }
-}
-
-@media (max-width: 700px) {
-  footer .row {
-    flex-direction: column;
-  }
-  footer .col {
-    flex-basis: 100%;
-    margin-bottom: 30px;
-  }
-}
-  </style>
-</head>
-
-<body>
-
-  <div class="main">
-    <div class="nav">
-      <span class="logo-image">
-        <img src="/frontendCode/photos/logo.png" class="img-fluid" alt="ramdom image">
-      </span>
-      <!-- <h1>MHSSCOE</h1> -->
-      <div class="pt2">
-        <a href="#Page2" class="process-button" >Process</a>
-        <a href="#Page3">Updates</a>
-        <a href="#Page4">About</a>
-        <a href="#">
-          <h5>Contact Us</h5>
-          <div id="green"></div>
-        </a>
-      </div>
-    </div> 
-    <div class="page1">
-      <div class="heading">
-        <h1>Placement cell</h1>
-        <p>Welcome to the recruitment website For IIT Bombay.
-          IIT is India's foremost industrial leadership development institution. Our graduates are a combination of
-          rigorous thinking,
-          hardwork and fundamental stronghold.
-          They are nurtured by the institute to strive for excellence and deliver impact in their field of work. Let us
-          begin...</p>
-      </div>
-      <img src="/frontendCode/photos/cllg_pic1.jpg" alt="" class="img1">
-
-
-
-      <!-- signin -->
-
-
-      <div class="Sblock">
-        <h3>Log In</h3>
-        <form action="/user/login" method="post">
-          <div class="input-group">
-            <input type="text" name="usernamOrEmail" class="form-control" placeholder="Email or userName" aria-label="Email or Phone">
-          </div>
-          <div class="input-group">
-            <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password">
-          </div>
-          <button type="submit" id="submit" class="btn btn-primary">Log In</button>
-        </form>
-        <a href="/forgotpassword" class="forgot-password-link">Forgot password?</a>
-        <div class="action-Sblock">
-          <div class="ekline">
-            <p>Don't have an account?
-                <a href="/user/signup">Sign Up</a>
-            </p>
-          </div>
-
-        </div>
-      </div>
-
-
-
-
-      <div class="main">
-        <div class="button-wrapper">
-          <button class="animated-button" id="signUp">Sign Up</button>
-          <button class="animated-button" id="signIn">Sign In</button>
-        </div>
-      </div>
-
-    </div>
-    <div class ="page2" id ="Page2">
-      <div id="heading-x1">
-        <h2>Recruitment process</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex labore minus dolor provident dignissimos
-          placeat
-          et aperiam mollitia debitis quos.</p>
-      </div>
-      <div class="container">
-        <div class="card">
-          <h2>1</h2>
-          <p>The Placement Office appoints a point of contact for you and sends invitations to recruiting
-            organizations
-          </p>
-        </div>
-        <div class="card">
-          <h2>2</h2>
-          <p>Recruiters interested in hiring will create their online account on</p>
-        </div>
-        <div class="card">
-          <h2>3</h2>
-          <p>To complete the registration, you will have to make a payment as per the registration amount (Only for
-            Placements)</p>
-        </div>
-        <div class="card">
-          <h2>4</h2>
-          <p>Recruiters can now create jobs/internships containing the details of opportunity as required by the
-            Placement Office</p>
-        </div>
-        <div class="card">
-          <h2>5</h2>
-          <p>The details of the job are verified by the executive officers. (Remuneration details and any other
-            ambiguous information)</p>
-        </div>
-        <div class="card">
-          <h2>6</h2>
-          <p>After successful verification, the job is made available online to the students, as per dates decided
-            by
-            the Placement Office</p>
-        </div>
-        <div class="card">
-          <h2>7</h2>
-          <p>Interested students show their willingness to appear for the recruitment process of a company by
-            applying
-            for its Job</p>
-        </div>
-        <div class="card">
-          <h2>8</h2>
-          <p>Companies can view resumes of interested students and shortlist students using their online account.
-          </p>
-        </div>
-        <div class="card">
-          <h2>9</h2>
-          <p>Companies can proceed with their tests/screening process after finalizing the schedule in coordinance
-            with
-            Placement Office</p>
-        </div>
-        <div class="card">
-          <h2>10</h2>
-          <p>Companies shortlist the selected students for final interview process</p>
-        </div>
-        <div class="card">
-          <h2>11</h2>
-          <p>Placement Office allots dates to organizations for campus interviews based on various details given by
-            companies</p>
-        </div>
-        <div class="card">
-          <h2>12</h2>
-          <p>The organization confirms the dates with the Placement Office</p>
-        </div>
-      </div>
-
-    </div>
-      <div class="page3" id="Page3">
-        <section class="section section-news">
-          <div class="swiper-heading">
-            <h3>Latest News</h3>
-          </div>
-        </section>
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="/frontendCode/photos/cllg_pic3.jpg" alt="News Image 1" /></div>
-            <div class="swiper-slide"><img src="/frontendCode/photos/cllg_pic3.jpg" alt="News Image 2" /></div>
-            <div class="swiper-slide"><img src="/frontendCode/photos/cllg_pic3.jpg" alt="News Image 3" /></div>
-            <!-- More slides -->
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-      
-    </div>
-
-    <!-- footer -->
-    <footer>
-      <div class="page4" id= "page4">
-      <div class="row">
-        <div class="col">
-          <img src="images/vevo.png" class="logo" alt="">
-          <p>Subscribe to Zaki Chowdhury's YouTube channel for more videos on website development. Press the bell icon for immediate notifications.</p>
-        </div>
-        <div class="col">
-          <h3>Office <div class="underline"><span></span></div></h3>
-          <p>ITPL Road</p>
-          
-          <p>Dhania, Dhaka</p>
-          <p>Dhaka, PIN 521460, Bangladesh</p>
-          <p class="email-id">ferozmahmudzaki@outlook.com</p>
-          <h4>+55-0113254-254</h4>
-        </div>
-        <div class="col">
-          <h3>Links  <div class="underline"><span></span></div></h3>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Featured</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col">
-          <h3>Newsletter <div class="underline"><span></span></div></h3>
-          <form action="">
-            <i class="far fa-envelope"></i>
-            <input type="email" placeholder="Enter your email id" required>
-            <button type="submit"><i class="fas fa-arrow-right"></i></button>
-          </form>
-          <div class="social-icons">
-            <i class="fab fa-facebook-f"></i>
-            <i class="fab fa-twitter"></i>
-            <i class="fab fa-linkedin"></i>
-            <i class="fab fa-pinterest"></i>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <p class="copyright">Zaki Chowdhury &copy; 2021 - All Rights Reserved.</p>
-    </div>
-    </footer>
+      .button-wrapper {
+        position: absolute;
+        right: 50px;
+        bottom: 50px;
+        display: flex;
+        gap: 20px;
+        z-index: 20;
     
-    </div>
+      }
+    
+      .animated-button {
+        /*removed from screen  */
+        display: none;
+        padding: 10px 20px;
+        border: 1px solid #000;
+        border-radius: 50px;
+        color: #222;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        position: relative;
+        overflow: hidden;
+        transition: left 0.4s ease;
+        text-align: center;
+      }
+    
+      .animated-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: springgreen;
+        transition: transform 0.4s ease;
+        transform: scaleX(0);
+        transform-origin: right;
+        z-index: 1;
+      }
+    
+      .animated-button:hover::before {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    
+      .animated-button span {
+        position: relative;
+        z-index: 99;
+      }
+    
+    
+      #page2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background-color: black;
+        /* Assuming a black background for page2 */
+        color: #fff;
+        /* White text color */
+      }
+    
+      #heading-x1 {
+        margin-top: 10px;
+        position: absolute;
+        left: 25%;
+        text-align: center;
+        margin-bottom: 40px;
+        max-width: 800px;
+      }
+    
+      #heading-x1 h2 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+    
+      #heading-x1 p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: #ccc;
+      }
+    
+      .container {
+        top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 5%;
+        margin: 5%;
+      }
+    
+      .card {
+        width: 100%;
+        max-width: 250px;
+        min-height: 150px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+      }
+    
+      .card h2 {
+        margin-top: 0;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+      }
+    
+      .card p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #555;
+      }
+    
+      @media (max-width: 768px) {
+        .card {
+          width: 100%;
+        }
+      }
+    
+      @media (max-width: 480px) {
+        .card h2 {
+          font-size: 20px;
+        }
+    
+        .card p {
+          font-size: 14px;
+        }
+      }
+    
+    
+    
+      .page3 {
+        height: 50vh;
+        width: 100vw;
+        background-color: #fff;
+      }
+    
+      .ekline{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+    /* Adjust swiper container */
+    .page3 {
+      height: 60vh;
+      width: 100vw;
+      background-color: #f0f0f0; /* Lighter background for contrast */
+      padding: 20px 0; /* Space around slider */
+    }
+    
+    .swiper-heading {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      color: #333;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    
+    /* Update swiper styling */
+    .swiper {
+      width: 80%; /* Reduce the size for a centered look */
+      height: 80%;
+      margin: auto; /* Center the swiper */
+    }
+    
+    .swiper-slide {
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 10%;
+      top: 10%;
+    
+    
+    }
+    
+    .swiper-slide img {
+      width: 80%; /* Reduce image size */
+      height: 60%; /* Keep the height consistent */
+      object-fit: cover;
+      border-radius: 10px; /* Softer edges for a modern look */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+      transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+    }
+    
+    .swiper-slide img:hover {
+      transform: scale(1.05); /* Slight zoom effect on hover */
+    }
+    
+    /* Adjust buttons */
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #000;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 50%;
+      transition: background-color 0.3s ease;
+    }
+    
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background: rgba(0, 0, 0, 0.6); /* Darker background on hover */
+    }
+    
+    /* Pagination dots */
+    .swiper-pagination-bullet {
+      background-color: #000;
+      opacity: 0.7;
+    }
+    
+    .swiper-pagination-bullet-active {
+      background-color: springgreen;
+      opacity: 1;
+    }
+    /* <!-- footer --> */
+    footer {
+      width: 100%;
+      background: linear-gradient(to right, #00093c, #2d0b00);
+      color: #fff;
+      padding: 60px 0 20px;
+      font-size: 13px;
+      line-height: 20px;
+      position: relative;
+      z-index: 1;  /* Ensures it doesn't interfere with other sections */
+    }
+    
+    footer .row {
+      width: 90%;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    
+    footer .col {
+      flex-basis: 25%;
+      padding: 10px;
+    }
+    
+    footer .col:nth-child(2), footer .col:nth-child(3) {
+      flex-basis: 20%;
+    }
+    
+    footer .logo {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+    
+    footer .col h3 {
+      margin-bottom: 25px;
+      position: relative;
+    }
+    
+    footer .email-id {
+      width: fit-content;
+      border-bottom: 1px solid #ccc;
+      margin: 20px 0;
+    }
+    
+    footer ul li {
+      list-style: none;
+      margin-bottom: 10px;
+    }
+    
+    footer ul li a {
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s;
+    }
+    
+    footer ul li a:hover {
+      color: #ff8c00;
+    }
+    
+    footer form {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+    }
+    
+    footer form input {
+      width: 100%;
+      background: transparent;
+      color: #ccc;
+      border: none;
+      outline: none;
+    }
+    
+    footer form button {
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+    
+    footer form button .fas {
+      font-size: 16px;
+      color: #ccc;
+    }
+    
+    footer .social-icons .fab {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-size: 20px;
+      border: 1px solid #fff;
+      margin-right: 10px;
+      color: #2B0B02;
+      background: #fff;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+    
+    footer .social-icons .fab:hover {
+      background: #040A38;
+      color: #fff;
+      transform: translateY(-5px);
+    }
+    
+    footer hr {
+      width: 90%;
+      border: 0;
+      border-bottom: 1px solid #ccc;
+      margin: 20px auto;
+    }
+    
+    footer .copyright {
+      text-align: center;
+    }
+    
+    footer .underline {
+      width: 100%;
+      height: 3px;
+      background: #767676;
+      border-radius: 3px;
+      position: absolute;
+      top: 25px;
+      left: 0;
+      overflow: hidden;
+    }
+    
+    footer .underline span {
+      width: 15px;
+      height: 100%;
+      background: #fff;
+      border-radius: 3px;
+      position: absolute;
+      top: 0;
+      left: 10px;
+      animation: moving 2s linear infinite;
+    }
+    
+    @keyframes moving {
+      0% {
+        left: -20px;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      footer .col {
+        flex-basis: 45%;
+      }
+    }
+    
+    @media (max-width: 700px) {
+      footer .row {
+        flex-direction: column;
+      }
+      footer .col {
+        flex-basis: 100%;
+        margin-bottom: 30px;
+      }
+    }
+      </style>
+    </head>
+    
+    <body>
+    
+      <div class="main">
+        <div class="nav">
+          <span class="logo-image">
+            <img src="/frontendCode/photos/logo.png" class="img-fluid" alt="ramdom image">
+          </span>
+          <!-- <h1>MHSSCOE</h1> -->
+          <div class="pt2">
+            <a href="#Page2" class="process-button" >Process</a>
+            <a href="#Page3">Updates</a>
+            <a href="#Page4">About</a>
+            <a href="#">
+              <h5>Contact Us</h5>
+              <div id="green"></div>
+            </a>
+          </div>
+        </div> 
+        <div class="page1">
+          <div class="heading">
+            <h1>Placement cell</h1>
+            <p>Welcome to the recruitment website For IIT Bombay.
+              IIT is India's foremost industrial leadership development institution. Our graduates are a combination of
+              rigorous thinking,
+              hardwork and fundamental stronghold.
+              They are nurtured by the institute to strive for excellence and deliver impact in their field of work. Let us
+              begin...</p>
+          </div>
+          <img src="/frontendCode/photos/cllg_pic1.jpg" alt="" class="img1">
+    
+    
+    
+          <!-- signin -->
+    
+    
+          <div class="Sblock">
+            <!-- Slider for Students/Admin -->
+            <div class="slider">
+              <span class="slider-option active" data-user="student">Student</span>
+              <span class="slider-option" data-user="admin">Admin</span>
+              <div class="slider-indicator"></div>
+            </div>
+          
+            <!-- Form for Student Login -->
+            <form id="studentForm" class="form active"  action="/user/login" method="post">
+              <h3>Log In</h3>
+              <div class="input-group">
+                <input name="usernamOrEmail" type="text" class="form-control" placeholder="Student Email" aria-label="Student Email">
+              </div>
+              <div class="input-group">
+                <input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password">
+              </div>
+              <button type="submit" id="submitStudent" class="btn">Log In as Student</button>
+            </form>
+          
+            <!-- Form for Admin Login -->
+            <form id="adminForm" class="form " action="/admin/login" method="post">
+              <h3>Log In</h3>
+              <div class="input-group">
+                <input name="usernamEmail" type="text" class="form-control" placeholder="Admin Email" aria-label="Admin Email">
+              </div>
+              <div class="input-group">
+                <input name="passWord" type="password" class="form-control" placeholder="Password" aria-label="Password">
+              </div>
+              <button type="submit" id="submitAdmin" class="btn">Log In as Admin</button>
+            </form>
+          
+            <a href="/forgotpassword" class="forgot-password-link">Forgot password?</a>
+            
+            <div class="action-Sblock">
+              <p>Don't have an account? <br><a href="/user/signup">student Sign Up</a><br><a href="/admin/signup">Admin Sign Up</a></p>
+            </div>
+          </div>
+          
+    
+    
+    
+    
+          <div class="main">
+            <div class="button-wrapper">
+              <button class="animated-button" id="signUp">Sign Up</button>
+              <button class="animated-button" id="signIn">Sign In</button>
+            </div>
+          </div>
+    
+        </div>
+        <div class ="page2" id ="Page2">
+          <div id="heading-x1">
+            <h2>Recruitment process</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex labore minus dolor provident dignissimos
+              placeat
+              et aperiam mollitia debitis quos.</p>
+          </div>
+          <div class="container">
+            <div class="card">
+              <h2>1</h2>
+              <p>The Placement Office appoints a point of contact for you and sends invitations to recruiting
+                organizations
+              </p>
+            </div>
+            <div class="card">
+              <h2>2</h2>
+              <p>Recruiters interested in hiring will create their online account on</p>
+            </div>
+            <div class="card">
+              <h2>3</h2>
+              <p>To complete the registration, you will have to make a payment as per the registration amount (Only for
+                Placements)</p>
+            </div>
+            <div class="card">
+              <h2>4</h2>
+              <p>Recruiters can now create jobs/internships containing the details of opportunity as required by the
+                Placement Office</p>
+            </div>
+            <div class="card">
+              <h2>5</h2>
+              <p>The details of the job are verified by the executive officers. (Remuneration details and any other
+                ambiguous information)</p>
+            </div>
+            <div class="card">
+              <h2>6</h2>
+              <p>After successful verification, the job is made available online to the students, as per dates decided
+                by
+                the Placement Office</p>
+            </div>
+            <div class="card">
+              <h2>7</h2>
+              <p>Interested students show their willingness to appear for the recruitment process of a company by
+                applying
+                for its Job</p>
+            </div>
+            <div class="card">
+              <h2>8</h2>
+              <p>Companies can view resumes of interested students and shortlist students using their online account.
+              </p>
+            </div>
+            <div class="card">
+              <h2>9</h2>
+              <p>Companies can proceed with their tests/screening process after finalizing the schedule in coordinance
+                with
+                Placement Office</p>
+            </div>
+            <div class="card">
+              <h2>10</h2>
+              <p>Companies shortlist the selected students for final interview process</p>
+            </div>
+            <div class="card">
+              <h2>11</h2>
+              <p>Placement Office allots dates to organizations for campus interviews based on various details given by
+                companies</p>
+            </div>
+            <div class="card">
+              <h2>12</h2>
+              <p>The organization confirms the dates with the Placement Office</p>
+            </div>
+          </div>
+    
+        </div>
+          <div class="page3" id="Page3">
+            <section class="section section-news">
+              <div class="swiper-heading">
+                <h3>Latest News</h3>
+              </div>
+            </section>
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="/frontendCode/photos/cllg_pic3.jpg" alt="News Image 1" /></div>
+                <div class="swiper-slide"><img src="/frontendCode/photos/cllg_pic3.jpg" alt="News Image 2" /></div>
+                <div class="swiper-slide"><img src="/frontendCode/photos/cllg_pic3.jpg" alt="News Image 3" /></div>
+                <!-- More slides -->
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          
+        </div>
+    
+        <!-- footer -->
+        <footer>
+          <div class="page4" id= "page4">
+          <div class="row">
+            <div class="col">
+              <img src="images/vevo.png" class="logo" alt="">
+              <p>Subscribe to Zaki Chowdhury's YouTube channel for more videos on website development. Press the bell icon for immediate notifications.</p>
+            </div>
+            <div class="col">
+              <h3>Office <div class="underline"><span></span></div></h3>
+              <p>ITPL Road</p>
+              
+              <p>Dhania, Dhaka</p>
+              <p>Dhaka, PIN 521460, Bangladesh</p>
+              <p class="email-id">ferozmahmudzaki@outlook.com</p>
+              <h4>+55-0113254-254</h4>
+            </div>
+            <div class="col">
+              <h3>Links  <div class="underline"><span></span></div></h3>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Featured</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <h3>Newsletter <div class="underline"><span></span></div></h3>
+              <form action="">
+                <i class="far fa-envelope"></i>
+                <input type="email" placeholder="Enter your email id" required>
+                <button type="submit"><i class="fas fa-arrow-right"></i></button>
+              </form>
+              <div class="social-icons">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-linkedin"></i>
+                <i class="fab fa-pinterest"></i>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <p class="copyright">Zaki Chowdhury &copy; 2021 - All Rights Reserved.</p>
+        </div>
+        </footer>
+        
+        </div>
+    
+    
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+       <!-- <script src="script.js"></script> -->
+       <script>
+        gsap.from(".img1", {
+      delay: 0.4,
+      opacity: 0,
+      duration: 1,
+      y: -60
+    })
+    
+    
+    gsap.from(".heading", {
+      delay: 0.4,
+      opacity: 0,
+      duration: 1,
+      x: -50
+    })
+    
+    gsap.from(".nav", {
+      delay: 0.4,
+      opacity: 0,
+      duration: 1,
+      y: -10
+    })
+    
+    gsap.from(".card, #heading-x1", {
+      opacity: 0,
+      stagger: 0.4,
+      // duration :1,
+      scrollTrigger: {
+        trigger: ".card",
+        scroller: "body",
+        start: "top 60%",
+        marker: true
+      }
+    })
+    
+    
+    
+    var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 20,
+      centeredSlides: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+    
+    
+    
+// Get the slider options and forms
+const sliderOptions = document.querySelectorAll('.slider-option');
+const sliderIndicator = document.querySelector('.slider-indicator');
+const studentForm = document.getElementById('studentForm');
+const adminForm = document.getElementById('adminForm');
 
+// Add event listeners to the slider options
+sliderOptions.forEach(option => {
+  option.addEventListener('click', function () {
+    // Remove 'active' class from all options
+    sliderOptions.forEach(opt => opt.classList.remove('active'));
 
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-    integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-   <!-- <script src="script.js"></script> -->
-   <script>
-    gsap.from(".img1", {
-  delay: 0.4,
-  opacity: 0,
-  duration: 1,
-  y: -60
-})
+    // Add 'active' class to the clicked option
+    this.classList.add('active');
 
+    // Get the selected user type (student/admin)
+    const userType = this.getAttribute('data-user');
 
-gsap.from(".heading", {
-  delay: 0.4,
-  opacity: 0,
-  duration: 1,
-  x: -50
-})
-
-gsap.from(".nav", {
-  delay: 0.4,
-  opacity: 0,
-  duration: 1,
-  y: -10
-})
-
-gsap.from(".card, #heading-x1", {
-  opacity: 0,
-  stagger: 0.4,
-  // duration :1,
-  scrollTrigger: {
-    trigger: ".card",
-    scroller: "body",
-    start: "top 60%",
-    marker: true
-  }
-})
-
-
-
-var swiper = new Swiper(".mySwiper", {
-  spaceBetween: 20,
-  centeredSlides: true,
-  autoplay: {
-    delay: 4000,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
+    // Adjust the slider indicator position and show the corresponding form
+    if (userType === 'admin') {
+      sliderIndicator.style.left = '50%'; // Move the indicator to Admin
+      studentForm.classList.remove('active'); // Hide the student form
+      adminForm.classList.add('active'); // Show the admin form
+    } else {
+      sliderIndicator.style.left = '0'; // Move the indicator to Student
+      adminForm.classList.remove('active'); // Hide the admin form
+      studentForm.classList.add('active'); // Show the student form
+    }
+  });
 });
 
 
 
 
-   </script>
-</body>
 
-</html>
+
+    
+       </script>
+    </body>
+    
+    </html>

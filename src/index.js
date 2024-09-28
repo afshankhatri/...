@@ -33,7 +33,6 @@ const routeradmin = require("../src/routes/admin.routes")
 app.use("/admin",routeradmin)
 
 
-
 connectDB()
 .then(()=>{
     app.on("error",(error)=>{ //double quotes me error is liye likha hai Q K app.on bahut si chizo k liye kaam ata hai..us me se apne ko error wala kam kara na hai isliye wo likha hai..just like we do in addeventlistner("click",()=>{})

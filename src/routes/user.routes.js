@@ -3,7 +3,7 @@ const router = express.Router();
 const upload = require('../middlewares/multer.middleware')
 
 
-const {registerUser,loginUser,logoutUser,getUserProfile} = require('../controllers/user.controller');
+const {registerUser,loginUser,logoutUser,getUserProfile,getUserEdit} = require('../controllers/user.controller');
 // const {registerUser,loginUser,logoutUser} = require('../controllers/user.controller');
 const verifyJWt = require("../middlewares/auth.middleware");
 
@@ -17,10 +17,7 @@ router.get('/home',(req,res)=>{
 router.get('/dashboard',verifyJWt,(req,res)=>{
     res.render('dashBoard')
 })
-router.get('/profile',(req,res)=>{
-    // res.render('userProfile') just check once which one is correct
-    res.render('userprofile')
-})
+
 router.get('/messages',(req,res)=>{
     res.render('userMessage')
 })
@@ -29,6 +26,9 @@ router.get('/status',(req,res)=>{
 })
 router.get('/network',(req,res)=>{
     res.render('network')
+})
+router.get('/userEdit',(req,res)=>{
+    res.render('userEditProfile')
 })
 
 //main backend for particular click/command/instruction
@@ -80,6 +80,9 @@ router.route('/login').post(loginUser) //!!! wrong syntax ... we need to destruc
 
 router.route('/logout').post(verifyJWt,logoutUser)
 
-// router.route('/profile').post(verifyJWt,getUserProfile)
+router.route('/userProfile').get(verifyJWt,getUserProfile)
+
+router.route('/userEditProfile').post(verifyJWt,getUserEdit)
+
 
 module.exports = router
